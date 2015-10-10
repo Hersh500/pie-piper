@@ -45,7 +45,7 @@ def get_recipes(lst):
 		search_params = {'key': 'bd8bd23310a5b8837ade81d9dc094a6b', 'rId': i}
 		test = requests.get('http://food2fork.com/api/get', params= search_params)
 		ingredients.append(test.json()['recipe']['ingredients'][0:])
-	return ingredients
+	return str(ingredients)
 
 if __name__ == "__main__":
 	app.run(debug=True)
