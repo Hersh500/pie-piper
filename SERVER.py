@@ -1,5 +1,5 @@
 #Hersh Sanghvi
-#ALSO DODO: CHECK HOW TO SET ENV VARIABLES 
+#ALSO TODO: CHECK HOW TO SET ENV VARIABLES 
 
 from flask import Flask, request #Imports necessary flask libs
 from clarifai.client import ClarifaiApi #Imports the clarifai api
@@ -25,7 +25,7 @@ def get_tags():
 		while i in st:
 			st.remove(i)
 
-	return search_terms(st)
+	return json.dump(search_terms(st))
 
 def search_terms(term_list):
 
