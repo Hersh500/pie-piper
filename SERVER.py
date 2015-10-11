@@ -32,7 +32,7 @@ def get_tags():
 		while i in st:
 			st.remove(i)
 
-	return search_terms(st)
+	return json.dumps(search_terms(st))
 
 def search_terms(term_list):
 
