@@ -14,10 +14,12 @@ app = Flask(__name__) #don't worry about this part
 def index():
 	return "Hello, World! This is the server for our calhacks team's project"
 
-
+d = {}
 @app.route('/images/api/v1.0/', methods=['POST']) #Same thing as above, except this is what Flask should do when a POST request is made to this URL
 def get_tags():
 	#TODO: Error checking
+	global d 
+	d = {}
 	clarifai_api = ClarifaiApi()
 	blob_service = BlobService('calhacks', 'mm7EmY+T+MGahePBDSDU5LHpZR5tRXuh4MSco4jFrzHovOPEf06e18c89pxtPIo4NDVhhjSeaQY/FQmKNxjjyA==')	
 
@@ -42,8 +44,20 @@ def get_tags():
 	for i in ['food', 'nobody', 'still life', 'meal', 'dish', 'plate', 'delicious', 'isolated', 'cutout', 'unhealthy', 'one', 'background']: 
 		while i in st:
 			st.remove(i)
+	d = {blob_name: search_terms(st)}
+	return "success!"
 
-	return json.dumps(search_terms(st))
+@app.route('/images/api/v1.0/status', methods=['GET'])
+def get_status():
+	blob_name = request.data.decode('utf-8')
+	if blob_name in d.keys():
+		return json.dumps({"0":"OK"})		
+	else:
+		return json.dumps({"0":"NO"})
+
+@app.route('/images/api/v1.0/getd', methods=['GET'])
+def get_dict():
+	return json.dumps(d)
 
 def search_terms(term_list):
 
