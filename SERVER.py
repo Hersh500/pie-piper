@@ -5,6 +5,7 @@ from flask import Flask, request #Imports necessary flask libs
 from clarifai.client import ClarifaiApi #Imports the clarifai api
 import requests
 import json
+import base64
 
 app = Flask(__name__) #don't worry about this part
 
@@ -17,7 +18,13 @@ def get_tags():
 	#TODO: Error checking
 	common_terms = ['food', 'nobody', 'still life', 'meal', 'dish', 'plate', 'delicious', 'isolated', 'cutout', 'unhealthy', 'one', 'background'] 
 	clarifai_api = ClarifaiApi()
-	img = request.files['file'] #assumes that this data is raw image data
+	#img = request.files['file'] #assumes that this data is raw image data
+	img = request.data
+	i = open ('s.jpg', 'wb')
+	i.write(base64.b64decode(img))
+	i.close()
+	img = open ('s.jpg', 'rb')
+
 	result = clarifai_api.tag_images(img)
 	print (str(result))
 	st = result['results'][0]['result']['tag']['classes'][0:6]
@@ -25,7 +32,7 @@ def get_tags():
 		while i in st:
 			st.remove(i)
 
-	return search_terms(st)
+	return json.dumps(search_terms(st))
 
 def search_terms(term_list):
 
