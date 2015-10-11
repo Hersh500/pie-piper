@@ -12,8 +12,8 @@ import logging
 
 
 app = Flask(__name__) #don't worry about this part
-app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
+#app.logger.addHandler(logging.StreamHandler(sys.stdout))
+#app.logger.setLevel(logging.ERROR)
 
 @app.route('/') #This part essentially marks that the following function is what Flask should do when the client wants to go to "/"
 def index():
@@ -31,7 +31,7 @@ def get_tags():
 	blob_service = BlobService('calhacks', 'mm7EmY+T+MGahePBDSDU5LHpZR5tRXuh4MSco4jFrzHovOPEf06e18c89pxtPIo4NDVhhjSeaQY/FQmKNxjjyA==')	
 
 	blob_name = request.form['blob_id']
-	blob_name = blob_name.decode('utf-8')
+#	blob_name = blob_name.decode('utf-8')
 	blob_service.get_blob_to_path('imagestore', blob_name, 'out.png')	
 	print("checkpoint 1")
 	i = open ('out.png', 'r')
