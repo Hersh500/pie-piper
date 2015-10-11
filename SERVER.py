@@ -32,7 +32,7 @@ def get_tags():
 		while i in st:
 			st.remove(i)
 
-	return json.dumps(search_terms(st))
+	return search_terms(st)
 
 def search_terms(term_list):
 
@@ -44,7 +44,7 @@ def search_terms(term_list):
 		current_rid = r.json()['recipes'][i]['recipe_id']
 		recipe.append(current_rid)
 		i += 1
-	return get_recipes(recipe)
+	return json.dumps(get_recipes(recipe))
 
 def get_recipes(lst):
 	ingredients = []
@@ -52,7 +52,7 @@ def get_recipes(lst):
 		search_params = {'key': 'bd8bd23310a5b8837ade81d9dc094a6b', 'rId': i}
 		test = requests.get('http://food2fork.com/api/get', params= search_params)
 		ingredients.append(test.json()['recipe']['ingredients'][0:])
-	return str(ingredients)
+	return json.dumps(ingredients)
 
 if __name__ == "__main__":
 	app.run(debug=True)
