@@ -48,8 +48,8 @@ def search_terms(term_list):
 
 def get_recipes(lst):
 	ingredients = {}
-	for i in range(0,lst):
-		search_params = {'key': 'bd8bd23310a5b8837ade81d9dc094a6b', 'rId': i}
+	for i in range(0,len(lst)):
+		search_params = {'key': 'bd8bd23310a5b8837ade81d9dc094a6b', 'rId': lst[i]}
 		test = requests.get('http://food2fork.com/api/get', params= search_params)
 		ingredients[i] = (test.json()['recipe']['ingredients'][0:])
 	return json.dumps(ingredients)
