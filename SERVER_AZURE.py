@@ -14,19 +14,12 @@ app = Flask(__name__) #don't worry about this part
 def index():
 	return "Hello, World! This is the server for our calhacks team's project"
 
-def set_keys():
-	f = open('keys.txt')
-	os.environ['CLARIFAI_APP_ID'] = f.readline().strip('\n')
-	os.environ['CLARIFAI_APP_SECRET'] = f.readline().strip('\n')
-	blob_service = BlobService('calhacks', f.readline().strip('\n')
-	return blob_service
-	
 
 @app.route('/images/api/v1.0/', methods=['POST']) #Same thing as above, except this is what Flask should do when a POST request is made to this URL
 def get_tags():
 	#TODO: Error checking
 	clarifai_api = ClarifaiApi()
-	blob_service = set_keys()
+	blob_service = BlobService('calhacks', 'mm7EmY+T+MGahePBDSDU5LHpZR5tRXuh4MSco4jFrzHovOPEf06e18c89pxtPIo4NDVhhjSeaQY/FQmKNxjjyA==')	
 
 	blob_name = request.data
 	blob_name = blob_name.decode('utf-8')
