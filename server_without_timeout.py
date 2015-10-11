@@ -20,7 +20,7 @@ def get_tags():
 	#TODO: Error checking
 #	global d 
 #	d = {}
-	return json.dumps({'0':'OK'})
+	return json.dumps("{'0':'OK'}")
 
 	clarifai_api = ClarifaiApi()
 	blob_service = BlobService('calhacks', 'mm7EmY+T+MGahePBDSDU5LHpZR5tRXuh4MSco4jFrzHovOPEf06e18c89pxtPIo4NDVhhjSeaQY/FQmKNxjjyA==')	
