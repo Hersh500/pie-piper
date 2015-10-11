@@ -1,1 +1,1 @@
-web: gunicorn SERVER_AZURE:app --log-file=-
+web: gunicorn server_without_timeout:app --log-file=-
