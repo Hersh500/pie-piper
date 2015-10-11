@@ -69,7 +69,7 @@ def get_dict():
 '''
 def search_terms(term_list):
 
-	search_terms = {'key': 'bd8bd23310a5b8837ade81d9dc094a6b', 'q': str(term_list)}
+	search_terms = {'key': 'fdcfe6dddaeedb645d0be7d912e32d79', 'q': str(term_list)}
 	r = requests.get('http://food2fork.com/api/search', params= search_terms)
 	i = 0
 	recipe = []
@@ -82,7 +82,7 @@ def search_terms(term_list):
 def get_recipes(lst):
 	ingredients = {}
 	for i in range(0,len(lst)):
-		search_params = {'key': 'bd8bd23310a5b8837ade81d9dc094a6b', 'rId': lst[i]}
+		search_params = {'key': 'fdcfe6dddaeedb645d0be7d912e32d79', 'rId': lst[i]}
 		test = requests.get('http://food2fork.com/api/get', params= search_params)
 		ingredients[i] = (test.json()['recipe']['ingredients'][0:])
 	return json.dumps(ingredients)
