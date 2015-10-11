@@ -26,7 +26,7 @@ def get_tags():
 	img = open ('s.jpg', 'rb')
 
 	result = clarifai_api.tag_images(img)
-	print (str(result))
+	#print (str(result))
 	st = result['results'][0]['result']['tag']['classes'][0:6]
 	for i in common_terms:
 		while i in st:
