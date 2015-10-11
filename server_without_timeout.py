@@ -7,8 +7,13 @@ import requests
 import json
 import base64
 import os
+import sys 
+import logging
+
 
 app = Flask(__name__) #don't worry about this part
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 @app.route('/') #This part essentially marks that the following function is what Flask should do when the client wants to go to "/"
 def index():
